@@ -5,6 +5,7 @@ import { IGullery } from './gullery.interface'
 import GulleryModel from './gullery.model'
 
 const createGullery = async (payload: IGullery): Promise<IGullery | null> => {
+  console.log('Data service:', payload)
   const createdUser = await GulleryModel.create(payload)
   // jodi user create na hoy
   if (!createdUser) {

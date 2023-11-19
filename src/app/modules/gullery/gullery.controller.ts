@@ -20,8 +20,8 @@ const createGullery = catchAsync(async (req: Request, res: Response) => {
 })
 ///admin/login
 const getGellery = catchAsync(async (req: Request, res: Response) => {
-  const id = req.params
-  const result = await GulleryService.getGellery(id)
+  // const id = req.params
+  const result = await GulleryService.getGellery()
 
   sendResponse<IGullery[]>(res, {
     statusCode: httpStatus.OK,

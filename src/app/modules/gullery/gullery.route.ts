@@ -8,9 +8,5 @@ import { GulleryController } from './gullery.controller'
 //export const UserValidation = { createUserZodSchema }
 const router = express.Router()
 router.get('/gullery', GulleryController.getGellery),
-  router.post(
-    '/create-gullery',
-    // validateRequest(GulleryValidation.createGulleryZodSchema),
-    GulleryController.createGullery
-  )
+  router.post('/create-gullery', GulleryController.createGullery)
 export const GulleryRoute = router
