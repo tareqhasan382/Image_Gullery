@@ -1,7 +1,7 @@
 import { Model, Types } from 'mongoose'
 
 export type IGullery = {
-  _id: string
+  _id?: string
   userId: Types.ObjectId
   image: string
 }

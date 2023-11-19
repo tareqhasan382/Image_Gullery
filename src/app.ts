@@ -7,7 +7,20 @@ import httpStatus from 'http-status'
 import cookieParser from 'cookie-parser'
 import { AuthRoute } from './app/modules/auth/auth.route'
 import { GulleryRoute } from './app/modules/gullery/gullery.route'
-app.use(cors())
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3000/',
+    'https://booking-fontend.vercel.app/',
+    'https://booking-fontend.vercel.app/',
+    'https://api.cloudinary.com/',
+    'https://api.cloudinary.com',
+  ], // https://booking-fontend.vercel.app || http://localhost:3000;
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+}
+app.use(cors(corsOptions))
+// app.use(cors(corsOptions))
 app.use(cookieParser())
 //parser
 app.use(express.json())

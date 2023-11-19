@@ -13,9 +13,9 @@ const createGullery = async (payload: IGullery): Promise<IGullery | null> => {
   return createdUser
 }
 ///auth/login
-const getGellery = async (payload: string): Promise<IGullery[] | null> => {
+const getGellery = async (): Promise<IGullery[] | null> => {
   // check exist user
-  const isUserExist = await GulleryModel.find({ _id: payload }, { image: 1 })
+  const isUserExist = await GulleryModel.find()
 
   return isUserExist
 }
