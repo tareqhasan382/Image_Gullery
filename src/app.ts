@@ -16,7 +16,7 @@ const corsOptions = {
     'https://api.cloudinary.com/',
     'https://api.cloudinary.com',
     'https://image-gullery-d1ev.vercel.app/',
-    'https://image-gullery-d1ev.vercel.app/',
+    'https://image-gullery-d1ev.vercel.app',
   ], // https://booking-fontend.vercel.app || http://localhost:3000;
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
