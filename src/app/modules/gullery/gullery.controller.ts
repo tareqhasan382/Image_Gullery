@@ -8,7 +8,7 @@ import { IGullery } from './gullery.interface'
 
 const createGullery = catchAsync(async (req: Request, res: Response) => {
   const data = req.body
-  console.log('data:', data)
+  //console.log('data:', data)
   const result = await GulleryService.createGullery(data)
 
   sendResponse<IGullery>(res, {

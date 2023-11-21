@@ -6,7 +6,8 @@ import { Request, Response } from 'express'
 import config from '../../../config'
 import { AuthService } from './auth.service'
 import { ILoginUserResponse, IUser } from './auth.interface'
-
+import AuthModel from './auth.model'
+import bcrypt from 'bcrypt'
 const createUser = catchAsync(async (req: Request, res: Response) => {
   const data = req.body
   //     const data = req.body
@@ -22,6 +23,28 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
 ///admin/login
 const LoginUser = catchAsync(async (req: Request, res: Response) => {
   const data = req.body
+  // console.log('data:', data)
+  const isUserExist = await AuthModel.findOne({ email: data.email }).select(
+    'password'
+  )
+  // console.log('isUserExist:', isUserExist)
+  if (!isUserExist) {
+    //throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist')
+    return res.json({
+      statusCode: httpStatus.NOT_FOUND,
+      message: 'User does`t exist',
+    })
+  }
+  const isMatchPassword = await bcrypt.compare(
+    data.password,
+    isUserExist?.password
+  )
+  if (!isMatchPassword) {
+    return res.json({
+      statusCode: httpStatus.UNAUTHORIZED,
+      message: 'Password is incorrect',
+    })
+  }
   const result = await AuthService.loginUser(data)
   const { refreshToken, ...others } = result
   // set refresh token into cookie
