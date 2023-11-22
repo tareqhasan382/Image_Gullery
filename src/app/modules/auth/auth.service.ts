@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import httpStatus from 'http-status'
-import bcrypt from 'bcrypt'
 import jwt, { Secret } from 'jsonwebtoken'
 import ApiError from '../../../errors/ApiError'
 import { ILoginUser, ILoginUserResponse, IUser } from './auth.interface'
@@ -18,7 +17,7 @@ const createUser = async (user: IUser): Promise<IUser | null> => {
 }
 ///auth/login
 const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
-  const { password, email } = payload
+  const { email } = payload
   // check exist user
   const isUserExist = await AuthModel.findOne(
     { email },
@@ -29,10 +28,7 @@ const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
     throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist')
   }
   // check match password
-  const isMatchPassword = await bcrypt.compare(password, isUserExist?.password)
-  if (!isMatchPassword) {
-    throw new ApiError(httpStatus.UNAUTHORIZED, 'Password is incorrect')
-  }
+
   // create jwt token
   const accessToken = jwt.sign(
     { userId: isUserExist._id, role: isUserExist.role },

@@ -30,8 +30,21 @@ const getGellery = catchAsync(async (req: Request, res: Response) => {
     data: result,
   })
 })
+const getMyGellery = catchAsync(async (req: Request, res: Response) => {
+  // const id = req.params
+  const data: any = req.params
+  //console.log('payload:', userId)
+  const result = await GulleryService.myGallery(data?.id)
 
+  sendResponse<IGullery[]>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'data retrive in successfully!',
+    data: result,
+  })
+})
 export const GulleryController = {
   createGullery,
   getGellery,
+  getMyGellery,
 }

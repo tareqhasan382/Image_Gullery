@@ -4,9 +4,10 @@ import cors from 'cors'
 import globalErrorHandler from './app/middlewares/globalErrorHandler'
 import httpStatus from 'http-status'
 //import ApiError from './errors/ApiError'
-import cookieParser from 'cookie-parser'
 import { AuthRoute } from './app/modules/auth/auth.route'
 import { GulleryRoute } from './app/modules/gullery/gullery.route'
+import cookieParser from 'cookie-parser'
+
 const corsOptions = {
   origin: [
     'http://localhost:3000',
@@ -27,6 +28,9 @@ app.use(cookieParser())
 //parser
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+// passport Setup=========================
+// Passport setup
+// Passport setup
 
 // Applications route
 

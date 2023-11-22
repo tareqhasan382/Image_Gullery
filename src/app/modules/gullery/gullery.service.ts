@@ -20,8 +20,15 @@ const getGellery = async (): Promise<IGullery[] | null> => {
 
   return isUserExist
 }
+const myGallery = async (userId: string): Promise<IGullery[] | null> => {
+  // check exist user
+  // console.log('payload:', userId)
+  const isUserExist = await GulleryModel.find({ userId: userId })
 
+  return isUserExist
+}
 export const GulleryService = {
   createGullery,
   getGellery,
+  myGallery,
 }
